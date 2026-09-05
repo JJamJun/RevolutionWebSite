@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { withBasePath } from "./site-path";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,12 +18,12 @@ export const metadata: Metadata = {
   description: "작은 움직임이 세상을 바꿉니다.",
   icons: {
     icon: [
-      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+      { url: withBasePath("/favicon-32.png"), sizes: "32x32", type: "image/png" },
+      { url: withBasePath("/icon-192.png"), sizes: "192x192", type: "image/png" },
+      { url: withBasePath("/icon-512.png"), sizes: "512x512", type: "image/png" },
     ],
-    shortcut: "/favicon-32.png",
-    apple: "/apple-touch-icon.png",
+    shortcut: withBasePath("/favicon-32.png"),
+    apple: withBasePath("/apple-touch-icon.png"),
   },
 };
 

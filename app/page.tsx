@@ -1,8 +1,11 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState } from "react";
+import { withBasePath } from "./site-path";
 
-const defaultGameThumbnails = Array.from({ length: 28 }, (_, index) => `/games/game-${String(index + 1).padStart(2, "0")}.png`);
+export const dynamic = "force-static";
+
+const defaultGameThumbnails = Array.from({ length: 28 }, (_, index) => withBasePath(`/games/game-${String(index + 1).padStart(2, "0")}.png`));
 const gamesPerRow = 3;
 const defaultContentImages = {
   history: ["history-1997.png", "history-1998.png", "history-1999.png"],
@@ -58,14 +61,14 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    fetch("/games/manifest.json", { cache: "no-store" })
+    fetch(withBasePath("/games/manifest.json"), { cache: "no-store" })
       .then((response) => response.ok ? response.json() : null)
       .then((manifest: { items?: string[] } | null) => {
-        if (manifest?.items?.length) setGameThumbnails(manifest.items.map((item) => `/games/${item}`));
+        if (manifest?.items?.length) setGameThumbnails(manifest.items.map((item) => withBasePath(`/games/${item}`)));
       })
       .catch(() => undefined);
 
-    fetch("/content-images.json", { cache: "no-store" })
+    fetch(withBasePath("/content-images.json"), { cache: "no-store" })
       .then((response) => response.ok ? response.json() : null)
       .then((manifest: { history?: string[]; activities?: string[] } | null) => {
         if (!manifest) return;
@@ -76,7 +79,7 @@ export default function Home() {
       })
       .catch(() => undefined);
 
-    fetch("/content-copy.json", { cache: "no-store" })
+    fetch(withBasePath("/content-copy.json"), { cache: "no-store" })
       .then((response) => response.ok ? response.json() : null)
       .then((manifest: { history?: { title: string; text: string }[]; activities?: { title: string; text: string }[] } | null) => {
         if (!manifest) return;
@@ -95,8 +98,8 @@ export default function Home() {
 
   return <main>
     <header className="site-header">
-      <div className="brand-row"><a className="brand-mark" href="#top" aria-label="REVOLUTION 홈"><img src="/revolution-logo.png" alt="REVOLUTION 동아리 로고" /></a><div className="brand-copy"><p>게임으로 100억 벌자</p><span>REVOLUTION&nbsp; | &nbsp;레볼루션</span></div></div>
-      <nav className="main-navigation" aria-label="주요 메뉴"><div className="main-menu"><button type="button" aria-haspopup="true">MAIN <span>⌄</span></button><div className="main-dropdown"><a href="#history">HISTORY</a><a href="#activities">ACTIVITIES</a><a href="#contact">CONTACT</a></div></div><a className="team-link" href="/team" target="_blank" rel="noreferrer">TEAM ↗</a></nav>
+      <div className="brand-row"><a className="brand-mark" href="#top" aria-label="REVOLUTION 홈"><img src={withBasePath("/revolution-logo.png")} alt="REVOLUTION 동아리 로고" /></a><div className="brand-copy"><p>게임으로 100억 벌자</p><span>REVOLUTION&nbsp; | &nbsp;레볼루션</span></div></div>
+      <nav className="main-navigation" aria-label="주요 메뉴"><div className="main-menu"><button type="button" aria-haspopup="true">MAIN <span>⌄</span></button><div className="main-dropdown"><a href="#history">HISTORY</a><a href="#activities">ACTIVITIES</a><a href="#contact">CONTACT</a></div></div><a className="team-link" href={withBasePath("/team/")} target="_blank" rel="noreferrer">TEAM ↗</a></nav>
     </header>
     <section className="hero" id="top">
       <div className="game-gallery" aria-hidden="true"><div className="game-gallery-track">{[0, 1, 2, 3].map((panel) => <div className="game-gallery-panel" key={panel}>{completeGameGrid.map((src, index) => <img src={src} alt="" key={`${panel}-${index}`} />)}</div>)}</div></div>
@@ -106,7 +109,7 @@ export default function Home() {
       <div className="history-pin">
         <div className="history-layout">
           <div className="history-text"><div className="history-heading"><p className="section-index">01 / HISTORY</p><h2>REVOLUTION<br />SINCE 1997</h2><p>게임을 즐기는 데서 한 걸음 더 나아가, 직접 만들기 시작한 사람들의 이야기입니다.</p></div><div className="timeline">{history.map((item, index) => <article className={`timeline-entry ${index === activeHistory ? "is-active" : ""}`} key={item.year} aria-hidden={index !== activeHistory}><p className="timeline-year">{item.year}</p><div><h3>{renderText(contentCopy.history[index].title)}</h3><p>{renderText(contentCopy.history[index].text)}</p></div></article>)}</div><div className="history-progress" aria-label={`${activeHistory + 1} of ${history.length}`}>{history.map((_, index) => <span className={index === activeHistory ? "is-active" : ""} key={index} />)}</div></div>
-          <div className="history-media"><img key={contentImages.history[activeHistory]} src={`/${contentImages.history[activeHistory]}`} alt={`${history[activeHistory].year} 레볼루션 활동 사진`} /></div>
+          <div className="history-media"><img key={contentImages.history[activeHistory]} src={withBasePath(`/${contentImages.history[activeHistory]}`)} alt={`${history[activeHistory].year} 레볼루션 활동 사진`} /></div>
         </div>
       </div>
     </section>
@@ -114,7 +117,7 @@ export default function Home() {
       <div className="history-pin">
         <div className="history-layout">
           <div className="history-text"><div className="history-heading"><p className="section-index">02 / ACTIVITIES</p><h2>What Does<br /><span className="about-title-line">REVOLUTION Do?</span></h2><p>배우고, 만들고, 더 넓은 게임의 세계와 연결되는 레볼루션의 활동입니다.</p></div><div className="timeline">{activities.map((item, index) => <article className={`timeline-entry ${index === activeActivity ? "is-active" : ""}`} key={item.number} aria-hidden={index !== activeActivity}><p className="timeline-year">{item.number}</p><div><h3>{renderText(contentCopy.activities[index].title)}</h3><p>{renderText(contentCopy.activities[index].text)}</p></div></article>)}</div><div className="history-progress" aria-label={`${activeActivity + 1} of ${activities.length}`}>{activities.map((_, index) => <span className={index === activeActivity ? "is-active" : ""} key={index} />)}</div></div>
-          <div className="history-media"><img key={contentImages.activities[activeActivity]} src={`/${contentImages.activities[activeActivity]}`} alt={`${activities[activeActivity].title} 활동 사진`} /></div>
+          <div className="history-media"><img key={contentImages.activities[activeActivity]} src={withBasePath(`/${contentImages.activities[activeActivity]}`)} alt={`${activities[activeActivity].title} 활동 사진`} /></div>
         </div>
       </div>
     </section>

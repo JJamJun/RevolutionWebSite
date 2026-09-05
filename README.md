@@ -89,6 +89,18 @@ git push
 
 GitHub Actions 자동 배포를 연결한 이후에는 `main` 브랜치에 변경사항이 올라오면 새 버전이 자동으로 빌드·배포되도록 구성할 수 있습니다.
 
+## GitHub Pages 배포
+
+이 저장소는 GitHub Actions를 통해 GitHub Pages에 자동 배포됩니다.
+
+- 공개 주소: `https://jjamjun.github.io/RevolutionWebSite/`
+- 배포 기준 브랜치: `main`
+- 자동화 파일: `.github/workflows/deploy-pages.yml`
+
+`main` 브랜치에 커밋을 올리면 Actions가 정적 사이트를 빌드한 뒤 GitHub Pages에 게시합니다. 배포 진행 상황은 저장소의 **Actions** 탭에서 확인할 수 있습니다.
+
+Studio에서 콘텐츠를 저장한 것만으로는 공개 홈페이지가 변경되지 않습니다. 저장된 이미지와 JSON 파일을 커밋하고 `git push`까지 완료해야 자동 배포가 시작됩니다.
+
 ## 유지보수 안내
 
 - 콘텐츠를 수정하기 전 원본 이미지와 `public` 폴더를 별도로 백업하는 것을 권장합니다.
@@ -132,4 +144,4 @@ public/
 
 ## 역대 홈페이지 관리자
 
-`26.08 ~ 현재 | 23 전준황
+`26.08 ~ 현재 | 23 전준황`

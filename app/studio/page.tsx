@@ -1,6 +1,9 @@
 "use client";
 
 import { ChangeEvent, useEffect, useState } from "react";
+import { withBasePath } from "../site-path";
+
+export const dynamic = "force-static";
 
 type StudioArea = "games" | "history" | "activities" | "teams";
 type StudioItem = { id: string; label: string; preview: string; storedName?: string; file?: File; title?: string; text?: string };
@@ -25,7 +28,7 @@ const sectionCopyDefaults = {
   ],
 };
 const makeId = () => globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random()}`;
-const makeSectionItems = (names: string[], labels: string[], copy: { title: string; text: string }[]) => names.map((name, index) => ({ id: makeId(), label: labels[index], preview: `/${name}`, storedName: name, title: copy[index].title, text: copy[index].text }));
+const makeSectionItems = (names: string[], labels: string[], copy: { title: string; text: string }[]) => names.map((name, index) => ({ id: makeId(), label: labels[index], preview: withBasePath(`/${name}`), storedName: name, title: copy[index].title, text: copy[index].text }));
 
 export default function StudioPage() {
   const [activeArea, setActiveArea] = useState<StudioArea>("games");
@@ -38,12 +41,12 @@ export default function StudioPage() {
   const [notice, setNotice] = useState("대문 · 게임 갤러리");
 
   useEffect(() => {
-    fetch("/games/manifest.json", { cache: "no-store" })
+    fetch(withBasePath("/games/manifest.json"), { cache: "no-store" })
       .then((response) => response.json())
-      .then((manifest: { items?: string[] }) => setItems((manifest.items ?? []).map((name) => ({ id: makeId(), label: name, preview: `/games/${name}`, storedName: name }))))
+      .then((manifest: { items?: string[] }) => setItems((manifest.items ?? []).map((name) => ({ id: makeId(), label: name, preview: withBasePath(`/games/${name}`), storedName: name }))))
       .catch(() => setNotice("게임 목록을 불러오지 못했습니다."));
 
-    fetch("/content-images.json", { cache: "no-store" })
+    fetch(withBasePath("/content-images.json"), { cache: "no-store" })
       .then((response) => response.json())
       .then((manifest: { history?: string[]; activities?: string[] }) => {
         const historyNames = manifest.history?.length === 3 ? manifest.history : historyDefaults;
@@ -53,7 +56,7 @@ export default function StudioPage() {
       })
       .catch(() => setNotice("History와 Activities 사진 목록을 불러오지 못했습니다."));
 
-    fetch("/content-copy.json", { cache: "no-store" })
+    fetch(withBasePath("/content-copy.json"), { cache: "no-store" })
       .then((response) => response.json())
       .then((manifest: { history?: { title: string; text: string }[]; activities?: { title: string; text: string }[] }) => {
         if (manifest.history?.length === 3) setHistoryItems((current) => current.map((item, index) => ({ ...item, title: manifest.history![index].title, text: manifest.history![index].text })));
@@ -61,9 +64,9 @@ export default function StudioPage() {
       })
       .catch(() => setNotice("History와 Activities 텍스트 목록을 불러오지 못했습니다."));
 
-    fetch("/team-content.json", { cache: "no-store" })
+    fetch(withBasePath("/team-content.json"), { cache: "no-store" })
       .then((response) => response.json())
-      .then((manifest: { teams?: { id: string; teamName: string; gameName: string; description: string; image: string }[] }) => setTeams((manifest.teams ?? []).map((team) => ({ ...team, preview: team.image ? `/${team.image}` : "", storedName: team.image || undefined }))))
+      .then((manifest: { teams?: { id: string; teamName: string; gameName: string; description: string; image: string }[] }) => setTeams((manifest.teams ?? []).map((team) => ({ ...team, preview: team.image ? withBasePath(`/${team.image}`) : "", storedName: team.image || undefined }))))
       .catch(() => setNotice("팀 정보 목록을 불러오지 못했습니다."));
   }, []);
 
@@ -134,7 +137,7 @@ export default function StudioPage() {
         await writable.write(item.file);
         await writable.close();
       }
-      savedItems.push({ ...item, storedName, preview: `/games/${storedName}`, file: undefined });
+      savedItems.push({ ...item, storedName, preview: withBasePath(`/games/${storedName}`), file: undefined });
     }
     const manifestHandle = await handle.getFileHandle("manifest.json", { create: true });
     const manifestWriter = await manifestHandle.createWritable();
@@ -161,7 +164,7 @@ export default function StudioPage() {
         await writable.write(item.file);
         await writable.close();
       }
-      saved.push({ ...item, storedName, preview: `/${storedName}`, file: undefined });
+      saved.push({ ...item, storedName, preview: withBasePath(`/${storedName}`), file: undefined });
     }
     const historyNames = area === "history" ? saved.map((item) => item.storedName) : historyItems.map((item) => item.storedName);
     const activityNames = area === "activities" ? saved.map((item) => item.storedName) : activityItems.map((item) => item.storedName);
@@ -199,7 +202,7 @@ export default function StudioPage() {
         await writable.write(team.file);
         await writable.close();
       }
-      savedTeams.push({ ...team, storedName, preview: storedName ? `/${storedName}` : "", file: undefined });
+      savedTeams.push({ ...team, storedName, preview: storedName ? withBasePath(`/${storedName}`) : "", file: undefined });
     }
     const contentHandle = await handle.getFileHandle("team-content.json", { create: true });
     const contentWriter = await contentHandle.createWritable();
@@ -223,7 +226,7 @@ export default function StudioPage() {
   const areaTitle = activeArea === "history" ? "History 콘텐츠" : "Activities 콘텐츠";
 
   return <main className="studio-page">
-    <header className="studio-header"><div><p>REVOLUTION LOCAL STUDIO</p><h1>콘텐츠 관리자</h1></div><a href="/">사이트 보기 ↗</a></header>
+    <header className="studio-header"><div><p>REVOLUTION LOCAL STUDIO</p><h1>콘텐츠 관리자</h1></div><a href={withBasePath("/")}>사이트 보기 ↗</a></header>
     <section className="studio-shell">
       <aside className="studio-sidebar"><p className="studio-label">CONTENT AREAS</p><button className={`studio-area ${activeArea === "games" ? "is-active" : ""}`} onClick={() => selectArea("games")}>대문 <span>게임 갤러리</span></button><button className={`studio-area ${activeArea === "history" ? "is-active" : ""}`} onClick={() => selectArea("history")}>History <span>사진 1 · 2 · 3</span></button><button className={`studio-area ${activeArea === "activities" ? "is-active" : ""}`} onClick={() => selectArea("activities")}>Activities <span>사진 1 · 2 · 3</span></button><button className={`studio-area ${activeArea === "teams" ? "is-active" : ""}`} onClick={() => selectArea("teams")}>팀 정보 나열 <span>Team 페이지 콘텐츠</span></button><p className="studio-help">게임 갤러리는 public/games 폴더를, 나머지 콘텐츠는 프로젝트의 public 폴더를 선택해 주세요.</p></aside>
       <section className="studio-workspace">
