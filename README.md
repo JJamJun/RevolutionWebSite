@@ -1,100 +1,131 @@
-# vinext-starter
+# REVOLUTION 홈페이지
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+경북대학교 게임 제작 동아리 **REVOLUTION(레볼루션)**을 소개하는 공식 홈페이지 프로젝트입니다.
 
-## Prerequisites
+동아리의 역사와 주요 활동을 소개하고, 현재 개발 중인 게임과 팀 정보를 한곳에서 확인할 수 있도록 제작되었습니다. 메인 화면의 게임 갤러리, History, Activities, Contact와 별도의 Team 페이지로 구성되어 있습니다.
 
-- Node.js `>=22.13.0`
+## 주요 페이지
 
-## Quick Start
+- `/` — REVOLUTION 소개, History, Activities, 가입 문의
+- `/team` — 개발 중인 게임과 팀 소개
+- `/studio` — 사진과 문구를 관리하는 로컬 전용 콘텐츠 편집 화면
 
-```bash
+## 로컬에서 실행하기
+
+### 준비 사항
+
+- Node.js 22.13.0 이상
+- npm
+- Chrome 또는 Edge 권장
+
+처음 내려받은 경우 프로젝트 폴더에서 다음 명령을 실행합니다.
+
+```powershell
 npm install
-npm run dev
-npm run build
+npx vinext dev
 ```
 
-This starter does not use `wrangler.jsonc`.
+실행 후 브라우저에서 다음 주소를 엽니다.
 
-## Included Shape
+- 홈페이지: `http://localhost:3000`
+- 콘텐츠 관리: `http://localhost:3000/studio`
+- 팀 페이지: `http://localhost:3000/team`
 
-- edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
+컴퓨터를 다시 시작하면 로컬 서버도 종료됩니다. 사이트를 다시 보려면 프로젝트 폴더에서 `npx vinext dev`를 다시 실행해야 합니다.
 
-## Workspace Auth Headers
+## Studio에서 콘텐츠 수정하기
 
-Signed-in visitors receive both `oai-authenticated-user-id` and `oai-authenticated-user-email`. Private Sites require every visitor to sign in; public Sites may also have anonymous visitors, for whom neither header is present.
+Studio는 관리자가 자신의 컴퓨터에서 사용하는 로컬 편집 도구입니다. 별도의 데이터베이스 없이 프로젝트의 `public` 폴더 안에 이미지와 JSON 파일을 저장합니다.
 
-The user ID is stable for the same user on the same Site and different across Sites. Email and name are intended for display or contact purposes.
+### 대문 게임 갤러리
 
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
+1. `/studio`에서 **대문 / 게임 갤러리**를 선택합니다.
+2. **이미지 추가**로 게임 썸네일을 등록합니다.
+3. 화살표로 노출 순서를 조정하거나 필요 없는 항목을 삭제합니다.
+4. **변경사항 저장**을 누릅니다.
+5. 폴더 선택 창에서 프로젝트의 `public/games` 폴더를 선택합니다.
+6. 홈페이지를 새로고침해 변경 결과를 확인합니다.
 
-Treat the full name as optional and fall back to email when it is absent:
+저장하면 이미지 파일과 `public/games/manifest.json`이 함께 갱신됩니다. 작품 수가 3의 배수가 아니어도 메인 화면에서는 빈칸 없이 반복됩니다.
 
-```tsx
-import { headers } from "next/headers";
+### History와 Activities
 
-export default async function Home() {
-  const requestHeaders = await headers();
-  const userId = requestHeaders.get("oai-authenticated-user-id");
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
+1. `/studio`에서 **History** 또는 **Activities**를 선택합니다.
+2. 1·2·3번 항목의 사진, 제목, 설명을 수정합니다.
+3. 문단을 나누려면 입력창에서 Enter를 누르거나 `<br />`를 입력합니다.
+4. **변경사항 저장**을 누릅니다.
+5. 폴더 선택 창에서 프로젝트의 `public` 폴더를 선택합니다.
+6. 홈페이지를 새로고침해 변경 결과를 확인합니다.
 
-  const displayName = fullName ?? email;
-  // ...
-}
+저장하면 이미지와 함께 다음 파일이 갱신됩니다.
+
+- `public/content-images.json`
+- `public/content-copy.json`
+
+### 팀 정보
+
+1. `/studio`에서 **팀 정보 나열**을 선택합니다.
+2. **팀 추가**를 누릅니다.
+3. 팀 사진, 팀 이름, 게임 이름, 게임 설명을 입력합니다.
+4. 설명은 Enter 또는 `<br />`로 줄바꿈할 수 있습니다.
+5. 팀의 순서를 조정한 뒤 **변경사항 저장**을 누릅니다.
+6. 폴더 선택 창에서 프로젝트의 `public` 폴더를 선택합니다.
+7. `/team` 페이지를 새로고침해 변경 결과를 확인합니다.
+
+저장하면 팀 이미지와 `public/team-content.json`이 갱신됩니다.
+
+## 변경사항을 홈페이지에 반영하기
+
+Studio의 저장 기능은 로컬 프로젝트 파일만 수정합니다. 이미 인터넷에 배포된 홈페이지에는 즉시 반영되지 않습니다.
+
+수정 내용을 확인한 뒤 다음 순서로 GitHub에 올립니다.
+
+```powershell
+git status
+git add .
+git commit -m "콘텐츠 업데이트"
+git push
 ```
 
-## Optional Dispatch-Owned ChatGPT Sign-In
+GitHub Actions 자동 배포를 연결한 이후에는 `main` 브랜치에 변경사항이 올라오면 새 버전이 자동으로 빌드·배포되도록 구성할 수 있습니다.
 
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
+## 유지보수 안내
 
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
+- 콘텐츠를 수정하기 전 원본 이미지와 `public` 폴더를 별도로 백업하는 것을 권장합니다.
+- Studio에서 저장할 때 대문은 `public/games`, 나머지는 반드시 `public` 폴더를 선택합니다.
+- 이미지 파일명은 영문, 숫자, 하이픈 조합을 권장합니다.
+- 용량이 큰 이미지는 웹용으로 압축한 뒤 등록하면 첫 화면 로딩 속도를 줄일 수 있습니다.
+- 연락처처럼 코드에 직접 적힌 내용은 `app/page.tsx`에서 수정합니다.
+- 색상과 전체 레이아웃은 `app/globals.css`에서 관리합니다.
+- 기능 수정 후에는 아래 명령으로 빌드 오류를 확인합니다.
 
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
+```powershell
+npx vinext build
+```
 
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
+- 비밀번호, API 키, 토큰은 코드나 JSON 파일에 직접 작성하지 않습니다. 필요한 경우 Git에 포함되지 않는 `.env` 파일을 사용합니다.
+- 배포 전 `git status`로 공개 저장소에 올라갈 파일을 반드시 확인합니다.
 
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
+## 프로젝트 구조
 
-## Useful Commands
+```text
+app/
+├─ page.tsx          메인 홈페이지
+├─ team/page.tsx     팀 소개 페이지
+├─ studio/page.tsx   로컬 콘텐츠 관리 화면
+└─ globals.css       공통 디자인과 반응형 스타일
 
-- `npm run dev`: start local development
-- `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
-- `npm run db:generate`: generate Drizzle migrations after schema changes
+public/
+├─ games/            대문 게임 썸네일과 목록
+├─ content-*.json    History·Activities 콘텐츠
+├─ team-content.json 팀 콘텐츠
+└─ 이미지 파일
+```
 
-## Learn More
+## 주의 사항
 
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+현재 Studio는 로컬 관리 도구이므로 온라인 방문자가 서버의 콘텐츠를 수정할 수 없습니다. 향후 온라인 관리자 기능이 필요하다면 관리자 인증과 이미지·콘텐츠 저장소를 별도로 연결해야 합니다.
+
+## 라이선스 및 자료 사용
+
+홈페이지에 포함된 REVOLUTION 로고, 활동 사진, 게임 썸네일과 기타 동아리 자료의 권리는 각 원저작자 및 REVOLUTION에 있습니다. 외부 사용이나 재배포 전 권리 관계를 확인해 주세요.

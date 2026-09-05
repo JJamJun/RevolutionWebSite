@@ -39,6 +39,11 @@ yarn-error.log*
 .dev.vars*
 .secrets*
 
+# local AI workspace metadata
+/.openai/
+/.codex/
+/.agents/
+
 # vercel
 .vercel
 
