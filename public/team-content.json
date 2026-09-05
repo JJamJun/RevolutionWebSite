@@ -2,189 +2,189 @@
   "teams": [
     {
       "id": "survey-solo-existing-02",
-      "teamName": "김명진",
+      "teamName": "",
       "gameName": "마법사키우기",
       "description": "방치형스타일 성장요소와 뱀파이어서바이벌 멀티플레이를 합친 게임을 만들고 있습니다. 1학기 부트캠프에서 제작한 게임과 동일하며 아직은 완성도가 너무 떨어져 10월 이전에는 스토어에 등록해보는 것을 목표로 하고 있습니다.",
       "image": ""
     },
     {
       "id": "survey-solo-existing-03",
-      "teamName": "류도훈",
+      "teamName": "",
       "gameName": "트래쉬버그",
       "description": "작아진 인간이 살아 움직이는 쓰레기들을 사냥해서 집을 청소하는 2D 액션 어드벤처",
       "image": ""
     },
     {
       "id": "survey-solo-existing-04",
-      "teamName": "박민준",
+      "teamName": "",
       "gameName": "Ludifriends",
       "description": "회사 이름이고 이것저것 제작해보며 테스팅중에 있습니다. 조금 더 빌드후 공개하고 싶습니다",
       "image": ""
     },
     {
       "id": "survey-solo-existing-05",
-      "teamName": "우준환",
+      "teamName": "",
       "gameName": "Potion1",
       "description": "악덕 카센터 시뮬레이터",
       "image": ""
     },
     {
       "id": "survey-solo-existing-06",
-      "teamName": "장현민",
+      "teamName": "",
       "gameName": "Randint Strategy Record",
       "description": "게임 명일방주의 팬게임으로 시작되었으나, 본래 명일방주의 게임 방식에서 벗어나 턴제 로그라이크 형식의 전투를 지향하는 게임으로 방향성이 잡혀 현재 개발중에 있습니다.",
       "image": ""
     },
     {
       "id": "survey-solo-existing-09",
-      "teamName": "권세찬",
+      "teamName": "",
       "gameName": "외계인 막는 검문게임(가제)",
       "description": "외계인과 인간을 구별해내는 페이퍼 플리즈류 게임",
       "image": ""
     },
     {
       "id": "survey-solo-existing-10",
-      "teamName": "강금지",
+      "teamName": "",
       "gameName": "금쥐",
       "description": "Luck & Roll : 동전 던지기 로그라이크",
       "image": ""
     },
     {
       "id": "survey-solo-new-02",
-      "teamName": "김도환",
+      "teamName": "",
       "gameName": "MUUK",
       "description": "2D 사이드뷰 보스 러쉬 / 보스를 처치할 때마다 다음 보스와 플레이어가 누적되는 증강을 1개씩 얻음",
       "image": ""
     },
     {
       "id": "survey-solo-new-03",
-      "teamName": "김민섭",
+      "teamName": "",
       "gameName": "unknowing",
       "description": "정보가 전혀 없는 상태에서, 맵과 세계를 탐험해나가며 상호작용과 시행착오를 통해 정보를 수집, 적에게 대응하는 방식이나 특정 도구의 용도 등을 익혀나가며 강해지는 게임. 1인칭 탐험 생존 시뮬레이션?",
       "image": ""
     },
     {
       "id": "survey-solo-new-04",
-      "teamName": "김희우",
+      "teamName": "",
       "gameName": "(가제) 스쿨러브",
       "description": "한국 고등학교 인간관계 시뮬레이션 게임입니다. 게임 내 모든 학생이 각자 스탯과 성격과 행동을 가지며 그 학생 중 한 명이 되어서 고등학생 생활을 하는 게임입니다.",
       "image": ""
     },
     {
       "id": "survey-solo-new-05",
-      "teamName": "민대영",
+      "teamName": "",
       "gameName": "학습용프로젝트",
       "description": "언리얼 학습용 개발 프로젝트",
       "image": ""
     },
     {
       "id": "survey-solo-new-06",
-      "teamName": "박찬영",
+      "teamName": "",
       "gameName": "위생 점검을 속여라",
       "description": "평범한 식당으로 위장하고 있지만 사실 괴이들을 위한 음식을 파는 가게의 점주인 주인공. 불시에 찾아오는 점검원을 속이고 손님들의 주문을 처리하는 게임을 구상 중 입니다.",
       "image": ""
     },
     {
       "id": "survey-solo-new-07",
-      "teamName": "박현준",
+      "teamName": "",
       "gameName": "우주 최강 보조배터리",
       "description": "지구인과 외계인들의 과도한 에너지 사용으로 인해 우주의 에너지가 고갈될 위기에 처했습니다. 플레이어는 인류가 개발한 무한 성장형 보조배터리를 강화하며 핸드폰, 냉장고, 전기 자동차, 우주선, 달, 태양, 은하까지 차례대로 충전해야 합니다. 클릭으로 돈을 벌고 보조배터리의 에너지 총량, 충전 속도, 클릭 수익, 자동 수익, 크리티컬 클릭을 강화해 더 거대한 대상을 충전할 수 있습니다. 각 보스를 완전히 충전하면 해당 보스가 자동으로 돈을 생산하며, 최종적으로 우주 전체를 100% 충전하면 게임이 종료됩니다.",
       "image": ""
     },
     {
       "id": "survey-solo-new-08",
-      "teamName": "윤서준",
+      "teamName": "",
       "gameName": "낚씨 게임",
       "description": "낚시해서 물고기를 낚고 그걸 팔아 가게를 키우는 스토리가 있는 게임을 만들어보고 싶습니다.",
       "image": ""
     },
     {
       "id": "survey-solo-new-09",
-      "teamName": "이현진",
+      "teamName": "",
       "gameName": "기니피그 키울기니?",
       "description": "기니피그를 키울기니? 그렇다. 기니피그를 키우는 게임이다. 먹이고, 씻기고, 놀아주고, 쓰다듬어주며 귀여운 기니피그와 행복한 하루를 보내보자. 기니피그가 귀여운 건 어쩔 수 없기니.",
       "image": ""
     },
     {
       "id": "survey-solo-new-10",
-      "teamName": "최준우",
+      "teamName": "",
       "gameName": "한랑담",
       "description": "동방프로젝트와 같은 탄막게임이지만 델타룬 처럼 스토리, 턴제 형식의 jrpg를 생각하고있습니다. 델타룬처럼 여러 챕터로 나눠질 예정이고 메인이 되는 주인공 '한', '랑'의 이야기를 진행합니다. 아직은 정말 간단히 기획만 하였고 현재 캐릭터, 스토리 디자인중입니다. 확실하게 정해진게 없어서 엎어질 수도 있습니다. / 동방프로젝트같은 탄막게임에 턴제를 섞은 델타룬 같은 게임을 만들어보고 싶습니다.",
       "image": ""
     },
     {
       "id": "survey-solo-new-11",
-      "teamName": "명수아",
+      "teamName": "",
       "gameName": "미정 - 명수아",
       "description": "주사위 기반 랜덤 로그라이크/캡틴 포에버+증분게임 오마주한 게임 아직 생각중입니다",
       "image": ""
     },
     {
       "id": "survey-solo-new-12",
-      "teamName": "조신근",
+      "teamName": "",
       "gameName": "미정 - 조신근",
       "description": "리듬에 맞춰 나아가며 적을 무찌르는 슈팅 게임",
       "image": ""
     },
     {
       "id": "survey-team-existing-02",
-      "teamName": "김경모, 도건우, 박진호, 김인경",
+      "teamName": "",
       "gameName": "명태조림",
       "description": "Poor Smith 가산을 탕진한 사냥꾼인 주인공이 우연한 계기로 팔게된 조잡한 검을 바탕으로 사업의 가능성을 깨달아 대장간의 영업을 시작하게된다. 자원 채집 조합 경영 대장간 타이쿤 게임",
       "image": ""
     },
     {
       "id": "survey-team-existing-03",
-      "teamName": "김대현(인컴), 김대현(심컴), 김휘영, 김문수, 이지훈",
+      "teamName": "",
       "gameName": "초밥집",
       "description": "작은 초밥집에서 직접 초밥을 만들어 판매하는 것부터 시작해, 번 돈으로 새로운 메뉴와 직원을 확보하고 가게를 확장해 나가는 증분형 경영 게임입니다. 점차 주방과 매장을 자동화하며 자신만의 초밥집을 성장시키는 것을 목표로 합니다",
       "image": ""
     },
     {
       "id": "survey-team-existing-04",
-      "teamName": "김시연, 박주영",
+      "teamName": "",
       "gameName": "쿠키",
       "description": "햄스터 정복은 햄스터를 뽑고 합성하여 적들을 물리치는 오토배틀러 게임입니다. / 베터그라운드 지원을 받아 [햄스타정복] 게임을 개발하고 있습니다.",
       "image": ""
     },
     {
       "id": "survey-team-existing-05",
-      "teamName": "정성진",
+      "teamName": "",
       "gameName": "Sandwitches",
       "description": "Sandwatch는 위에서 떨어지는 두 종류의 노트를 타이밍에 맞게 처리하는 리듬게임입니다. 비영리 프로젝트이며 스팀 데모까지 출시했고, 현재는 정식판을 목표로 달리는 중입니다. 프로그래머로 참여 중입니다. 레볼루션 소속은 저 뿐입니다. https://store.steampowered.com/app/4783660/Sandwatch",
       "image": ""
     },
     {
       "id": "survey-daegyeongjam-02",
-      "teamName": "김경모, 박승훈, 김인경",
+      "teamName": "",
       "gameName": "카페인 중독자들",
       "description": "예외처리규정 사이드뷰 퍼즐 공포 어드벤처 기괴하게 변한 회사에 갇혀버린 회사원인 플레이어가 각 방(혹은 장소)마다 존재하는 이상현상을 헤쳐나가며 한 층씩 내려가 죽지 않고 이 회사의 건물을 탈출해야한다.",
       "image": ""
     },
     {
       "id": "survey-daegyeongjam-03",
-      "teamName": "김동익",
+      "teamName": "",
       "gameName": "쿠네쿠네",
       "description": "더위 게이지가 차오르면 쿠네쿠네가 나타납니다. 쿠네쿠네를 피해, 주인공의 과거와 트라우마를 마주하세요.",
       "image": ""
     },
     {
       "id": "survey-daegyeongjam-04",
-      "teamName": "김혜지, 박태영",
+      "teamName": "",
       "gameName": "100일의 냥빙고",
       "description": "샌드박스형 생존게임 / 대경잼에 참가했던 14팀 '100일의 냥빙고'이고, 2D 횡스크롤 샌드박스 생존 게임입니다",
       "image": ""
     },
     {
       "id": "survey-daegyeongjam-05",
-      "teamName": "도건우",
+      "teamName": "",
       "gameName": "선셋파크",
       "description": "저희 6팀에서 개발 중인 “선셋파크”는 놀이공원에서 야간 경비원으로 일하게 된 주인공이 여러 이상현상들을 발견하고 해결해나가며 엔딩까지 도달하는 게임입니다.",
       "image": ""
     },
     {
       "id": "survey-daegyeongjam-06",
-      "teamName": "박진호, 손경효님",
+      "teamName": "",
       "gameName": "잔시",
       "description": "배경은 폐성당에 갇힌 주인공(강수영)이 과거와 현재를 오가며 탈출 방법을 찾는 이야기입니다. 목표는 폐성당에 숨겨진 진실을 밝히고 무사히 탈출하는 것입니다. 퍼즐을 풀고 스토리를 풀어가는 게임입니다.",
       "image": ""
